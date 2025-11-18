@@ -10,6 +10,6 @@ from presidio_anonymizer.operators import Initial
 )
 def test_given_value_for_initial(input_text, initials):
     text = Initial().operate(input_text) == initials
-    assert text == initials
+    assert text
 def test_correct_name():
     assert Initial().operator_name() == "initial"

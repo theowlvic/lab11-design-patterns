@@ -7,11 +7,15 @@ from presidio_anonymizer.operators import Operator, OperatorType
 
 class Initial(Operator):
     """Replaces the string with Initials"""
-    def operate(self, text: str = None, params: Dict = None) -> str:
+    def operate(self, text: str, params: Dict = None) -> str:
         """return the first letter of the name, followed by a period"""
         if not text:
             return ""
-        return f"{text[0]}."
+        name_s_ = text.split()
+        initial = ""
+        for word in name_s_:
+            initial = initial + word[0] + ". "
+        return initial.strip()
     
     def validate(self, params: Dict = None) -> None:
         """Initial does not require any parameters so no validation is needed"""

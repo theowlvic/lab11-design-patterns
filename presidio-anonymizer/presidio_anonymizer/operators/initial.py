@@ -14,7 +14,14 @@ class Initial(Operator):
         name_s_ = text.split()
         initial = ""
         for word in name_s_:
-            initial = initial + word[0] + ". "
+            for char in word:
+                if not (char.isalpha() or char.isnumeric()):
+                    initial += char
+                else:
+                    if char.isalpha():
+                        char = char.upper()
+                    initial += char + ". "
+                    break
         return initial.strip()
     
     def validate(self, params: Dict = None) -> None:

@@ -5,7 +5,7 @@ from presidio_anonymizer.operators import Initial
 @pytest.mark.parametrize(
     "input_text, initials",
     [
-        (" John Smith ", "J. S."),
+        ("John Smith", "J. S."),
     ],
 )
 def test_given_value_for_initial(input_text, initials):
@@ -14,6 +14,16 @@ def test_given_value_for_initial(input_text, initials):
 
 def test_correct_name():
     assert Initial().operator_name() == "initial"
+
+@pytest.mark.parametrize(
+    "input_text, initials",
+    [
+        (" John Smith ", "J. S."),
+    ],
+)
+def test_given_value_trims_whitespace(input_text, initials):
+    text = Initial().operate(input_text) == initials
+    assert text
 
 @pytest.mark.parametrize(
     "input_text, expected",
